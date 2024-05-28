@@ -70,34 +70,127 @@ public class Main {
         //Вычитание
          stringArray = input.split("-");
 
+        if (stringArray.length > 2) {
+            throw new ScannerException("error input");
+        }
+
         if (stringArray.length > 1) {
-            result = parseInt(stringArray[0]) - parseInt(stringArray[1]);
+            for ( String element : stringArray) {
+
+                Double val = 100.1;
+                String regex = "\\d+";
+
+                if( element.matches(regex) ){
+                    val =  parseDouble (element);
+                }
+
+                if(val % 1 == 0 && val <= 10 && val >=1 ) {
+                    continue;
+                }
+                else if(RimValue.valueOf(element) instanceof RimValue ) {
+                    flag = 1;
+                }
+                else {
+                    throw new ScannerException("error input");
+                }
+            }
+            if (flag == 0) {
+                result = parseInt(stringArray[0]) - parseInt(stringArray[1]);
+            } else {
+                RimValue a = RimValue.valueOf(stringArray[0]);
+                RimValue b = RimValue.valueOf(stringArray[1]);
+                result = parseInt(a.getValue()) - parseInt(b.getValue());
+                if(result < 0) {
+                    throw new ScannerException("error input");
+                }
+                RimValue[] RimValues = RimValue.values();
+                String resultRim = RimValues[result-1].name();
+                 return  resultRim;
+            }
 
         }
 
         //Деление
-        String [] stringArray2 = input.split("/");
+         stringArray = input.split("/");
 
-        if (stringArray2.length > 1) {
+        if (stringArray.length > 2) {
+            throw new ScannerException("error input");
+        }
 
-            result = parseInt(stringArray2[0]) / parseInt(stringArray2[1]);
+        if (stringArray.length > 1) {
+            for ( String element : stringArray) {
+
+                Double val = 100.1;
+                String regex = "\\d+";
+
+                if( element.matches(regex) ){
+                    val =  parseDouble (element);
+                }
+
+                if(val % 1 == 0 && val <= 10 && val >=1 ) {
+                    continue;
+                }
+                else if(RimValue.valueOf(element) instanceof RimValue ) {
+                    flag = 1;
+                }
+                else {
+                    throw new ScannerException("error input");
+                }
+            }
+            if (flag == 0) {
+                result = parseInt(stringArray[0]) / parseInt(stringArray[1]);
+            } else {
+                RimValue a = RimValue.valueOf(stringArray[0]);
+                RimValue b = RimValue.valueOf(stringArray[1]);
+                result = parseInt(a.getValue()) / parseInt(b.getValue());
+
+                RimValue[] RimValues = RimValue.values();
+                String resultRim = RimValues[result-1].name();
+                return  resultRim;
+            }
 
         }
 
         //Умножение
-        String [] stringArray3 = input.split("\\*");
+        stringArray = input.split("\\*");
 
-        if (stringArray3.length > 1) {
-
-            result = parseInt(stringArray3[0]) * parseInt(stringArray3[1]);
-
+        if (stringArray.length > 2) {
+            throw new ScannerException("error input");
         }
 
+        if (stringArray.length > 1) {
+            for ( String element : stringArray) {
 
-        for (String element: stringArray) {
-           // System.out.println(element);
+                Double val = 100.1;
+                String regex = "\\d+";
+
+                if( element.matches(regex) ){
+                    val =  parseDouble (element);
+                }
+
+                if(val % 1 == 0 && val <= 10 && val >=1 ) {
+                    continue;
+                }
+                else if(RimValue.valueOf(element) instanceof RimValue ) {
+                    flag = 1;
+                }
+                else {
+                    throw new ScannerException("error input");
+                }
+            }
+            if (flag == 0) {
+                result = parseInt(stringArray[0]) * parseInt(stringArray[1]);
+            } else {
+                RimValue a = RimValue.valueOf(stringArray[0]);
+                RimValue b = RimValue.valueOf(stringArray[1]);
+                result = parseInt(a.getValue()) / parseInt(b.getValue());
+
+                RimValue[] RimValues = RimValue.values();
+                String resultRim = RimValues[result-1].name();
+                return  resultRim;
+            }
+
         }
-        System.out.println(stringArray.length);
 
         return Integer.toString(result) ;
     }
