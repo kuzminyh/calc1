@@ -18,8 +18,6 @@ public class Main {
 
     public static String calc(String input) throws ScannerException {
 
-        char [] charArray = input.toCharArray();
-
         int result = 0 ;
 
 
