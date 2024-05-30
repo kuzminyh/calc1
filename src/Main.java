@@ -64,9 +64,17 @@ public class Main {
                     int i = 0;
                     do {
                         if(difference >= parseInt(RimValues[i+1].getValue()) && difference <= parseInt(RimValues[i].getValue()) ){
-                            rimResult = rimResult + RimValues[i+1].name();
+                            if(difference == parseInt(RimValues[i].getValue())){
+                                rimResult = RimValues[i].name();
+                                return  rimResult;
+                            }
+                            else
+                            {
+                                rimResult = rimResult + RimValues[i+1].name();
+                            }
+
 //                            System.out.println(RimValues[i]);
-                            System.out.println(rimResult);
+                         //   System.out.println(rimResult);
                             break;
                         }
                         i++;
@@ -76,11 +84,10 @@ public class Main {
 
                 } while (difference!=0 | difference>0);
 
-               return  rimResult;
+                return  rimResult;
             }
 
         }
-
         //Вычитание
          stringArray = input.split("-");
 
