@@ -1,5 +1,5 @@
 public enum RimValue {
-    I("1"),II("2"),III("3"),IV("4"),V("5"),VI("6"),VII("7"),VIII("8"), XI("9"), X("10");
+    C("100"),XC("90"),L("50"),XL("40"),X("10"), IX("9"),VIII("8"),VII("7"),VI("6"),V("5"),IV("4"),III("3"),II("2"),I("1") ;
     private String value;
     RimValue(String value ){
         this.value = value;
@@ -11,4 +11,6 @@ public enum RimValue {
     public String toString() {
         return value;
     }
+
+
 }

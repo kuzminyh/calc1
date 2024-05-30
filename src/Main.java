@@ -51,16 +51,32 @@ public class Main {
             }
             if (flag == 0) {
                 result = parseInt(stringArray[0]) + parseInt(stringArray[1]);
-            } else {
+               } else {
                 RimValue a = RimValue.valueOf(stringArray[0]);
                 RimValue b = RimValue.valueOf(stringArray[1]);
                 result = parseInt(a.getValue()) + parseInt(b.getValue());
+//                System.out.println("result="+result);
 
                 RimValue[] RimValues = RimValue.values();
-                String resultRim = RimValues[result-1].name();
-               // RimValue resultRim = RimValue.values()[result];
-               //   System.out.println("resultRim="+resultRim);
-                return  resultRim;
+                String rimResult = "";
+                int difference = result;
+                do {
+                    int i = 0;
+                    do {
+                        if(difference >= parseInt(RimValues[i+1].getValue()) && difference <= parseInt(RimValues[i].getValue()) ){
+                            rimResult = rimResult + RimValues[i+1].name();
+//                            System.out.println(RimValues[i]);
+                            System.out.println(rimResult);
+                            break;
+                        }
+                        i++;
+                    } while (i<=RimValues.length-1);
+
+                    difference = difference - parseInt(RimValues[i+1].getValue());
+
+                } while (difference!=0 | difference>0);
+
+               return  rimResult;
             }
 
         }
@@ -98,12 +114,35 @@ public class Main {
                 RimValue a = RimValue.valueOf(stringArray[0]);
                 RimValue b = RimValue.valueOf(stringArray[1]);
                 result = parseInt(a.getValue()) - parseInt(b.getValue());
-                if(result < 0) {
-                    throw new ScannerException("error input");
-                }
+//                System.out.println("result="+result);
+
                 RimValue[] RimValues = RimValue.values();
-                String resultRim = RimValues[result-1].name();
-                 return  resultRim;
+                String rimResult = "";
+                int difference = result;
+                do {
+                    int i = 0;
+                    do {
+                        if(difference >= parseInt(RimValues[i+1].getValue()) && difference <= parseInt(RimValues[i].getValue()) ){
+                            if(difference == parseInt(RimValues[i].getValue())){
+                                rimResult = RimValues[i].name();
+                                return  rimResult;
+                            }
+                            else
+                            {
+                                rimResult = rimResult + RimValues[i+1].name();
+                            }
+
+//                            System.out.println(RimValues[i]);
+//                            System.out.println(rimResult);
+                            break;
+                        }
+                        i++;
+                    } while (i<=RimValues.length-1);
+
+                    difference = difference - parseInt(RimValues[i+1].getValue());
+
+                } while (difference!=0 | difference>0);
+                return  rimResult;
             }
 
         }
@@ -141,10 +180,36 @@ public class Main {
                 RimValue a = RimValue.valueOf(stringArray[0]);
                 RimValue b = RimValue.valueOf(stringArray[1]);
                 result = parseInt(a.getValue()) / parseInt(b.getValue());
+//                System.out.println("result="+result);
 
                 RimValue[] RimValues = RimValue.values();
-                String resultRim = RimValues[result-1].name();
-                return  resultRim;
+                String rimResult = "";
+                int difference = result;
+                do {
+                    int i = 0;
+                    do {
+                        if(difference >= parseInt(RimValues[i+1].getValue()) && difference <= parseInt(RimValues[i].getValue()) ){
+                            if(difference == parseInt(RimValues[i].getValue())){
+                                rimResult = RimValues[i].name();
+                                return  rimResult;
+                            }
+                            else
+                            {
+                                rimResult = rimResult + RimValues[i+1].name();
+                            }
+
+//                            System.out.println(RimValues[i]);
+//                            System.out.println(rimResult);
+                            break;
+                        }
+                        i++;
+                    } while (i<=RimValues.length-1);
+
+                    difference = difference - parseInt(RimValues[i+1].getValue());
+
+                } while (difference!=0 | difference>0);
+
+                return  rimResult;
             }
 
         }
@@ -181,11 +246,37 @@ public class Main {
             } else {
                 RimValue a = RimValue.valueOf(stringArray[0]);
                 RimValue b = RimValue.valueOf(stringArray[1]);
-                result = parseInt(a.getValue()) / parseInt(b.getValue());
+                result = parseInt(a.getValue()) * parseInt(b.getValue());
+//                System.out.println("result="+result);
 
                 RimValue[] RimValues = RimValue.values();
-                String resultRim = RimValues[result-1].name();
-                return  resultRim;
+                String rimResult = "";
+                int difference = result;
+                do {
+                    int i = 0;
+                    do {
+                        if(difference >= parseInt(RimValues[i+1].getValue()) && difference <= parseInt(RimValues[i].getValue()) ){
+                            if(difference == parseInt(RimValues[i].getValue())){
+                                rimResult = RimValues[i].name();
+                                return  rimResult;
+                            }
+                            else
+                            {
+                                rimResult = rimResult + RimValues[i+1].name();
+                            }
+
+//                            System.out.println(RimValues[i]);
+                            System.out.println(rimResult);
+                            break;
+                        }
+                        i++;
+                    } while (i<=RimValues.length-1);
+
+                    difference = difference - parseInt(RimValues[i+1].getValue());
+
+                } while (difference!=0 | difference>0);
+
+                return  rimResult;
             }
 
         }
