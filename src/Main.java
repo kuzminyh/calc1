@@ -37,7 +37,29 @@ public class Main {
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {1, 5, 2, 17}, new int[] {4, 8, 6})));
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {14, 16, 3}, new int[] {4, 2, 8})));
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {14, 14, 3}, new int[] {4, 14, 8})));
-        getArrayMiddle1(new int[] {14, 16, 3});
+//        getArrayMiddle1(new int[] {14, 16, 3});
+//          parseAndPrintNumber("111");
+        isPalindrome("Was it a cat I saw?");
+    }
+
+    public static boolean isPalindrome(String text) {
+        String result = text.replaceAll("[^\\p{L}]", "").toLowerCase();
+        StringBuffer strBuff = new StringBuffer(result);
+        strBuff.reverse();
+        System.out.println(result);
+        System.out.println(strBuff.toString());
+        if (strBuff.toString().equals(result)) {
+            return  true;
+        }
+        else return false;
+    }
+
+    public static void parseAndPrintNumber(String str) {
+        System.out.print(Integer.parseInt(str) / 2);
+    }
+    public static void main1(String[] args) {
+        String name = "Sergey";
+        System.out.print(name);
     }
     public static int[] getArrayMiddle1(int[] numbers) {
         if (numbers.length == 0) {
