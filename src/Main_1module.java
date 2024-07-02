@@ -12,7 +12,7 @@ import static java.lang.String.valueOf;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Main_1module {
     public static void main(String[] args) throws ScannerException {
 //        test();
 //        Scanner scanner = new Scanner(System.in);
@@ -53,146 +53,7 @@ public class Main {
 //                ,"Аммос Федорович: Вот те на!","Артемий Филиппович: Вот не было заботы, так подай!"
 //                ,"Лука Лукич: Господи боже! еще и с секретным предписаньем!"};
 //        System.out.println(printTextPerRole(roles,textLines));
-//        System.out.println(Day.MONDAY.getRusName());
-//        System.out.println(Day.SUNDAY.isWeekend());
-        Robot robot = new Robot(0,0, Direction.DOWN);
-        moveRobot(robot, 3, 5);
-    }
-    //Задание 2.3
-    public enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-
-    public static class Robot {
-        int x;
-        int y;
-        Direction dir;
-
-        public Robot (int x, int y, Direction dir) {
-            this.x = x;
-            this.y = y;
-            this.dir = dir;
-        }
-
-        public Direction getDirection() {return dir;}
-
-        public int getX() {return x;}
-
-        public int getY() {return y;}
-
-        public void turnLeft() {
-            if      (dir == Direction.UP)    {dir = Direction.LEFT;}
-            else if (dir == Direction.DOWN)  {dir = Direction.RIGHT;}
-            else if (dir == Direction.LEFT)  {dir = Direction.DOWN;}
-            else if (dir == Direction.RIGHT) {dir = Direction.UP;}
-        }
-
-        public void turnRight() {
-            if      (dir == Direction.UP)    {dir = Direction.RIGHT;}
-            else if (dir == Direction.DOWN)  {dir = Direction.LEFT;}
-            else if (dir == Direction.LEFT)  {dir = Direction.UP;}
-            else if (dir == Direction.RIGHT) {dir = Direction.DOWN;}
-        }
-
-        public void stepForward() {
-            if (dir == Direction.UP)    {y++;}
-            if (dir == Direction.DOWN)  {y--;}
-            if (dir == Direction.LEFT)  {x--;}
-            if (dir == Direction.RIGHT) {x++;}
-        }
-    }
-
-    public static void moveRobot(Robot robot, int toX, int toY) {
-//         if(robot.getDirection() != Direction.UP) {
-//            robot.dir = Direction.UP;
-//        }
-         if(robot.getY() < toY){
-             while (!robot.getDirection().equals(Direction.UP)) {
-                 robot.turnLeft();
-                 System.out.println("robot.turnLeft()");
-
-             }
-             while (robot.getY() < toY){
-                 System.out.println("robot.stepForward()");
-                 robot.stepForward();
-             }
-         }
-
-        if(robot.getY() > toY){
-            while (!robot.getDirection().equals(Direction.DOWN)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getY() > toY){
-                robot.stepForward();
-            }
-        }
-        if(robot.getX() < toX){
-            while (!robot.getDirection().equals(Direction.RIGHT)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getX() < toX){
-                robot.stepForward();
-                System.out.println("robot.stepForward()");
-            }
-        }
-        if(robot.getX() > toX){
-            while (!robot.getDirection().equals(Direction.LEFT)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getX() > toX){
-                robot.stepForward();
-                System.out.println("robot.stepForward()");
-            }
-        }
-   }
-
-    //задание 2.3
-    public enum Day {
-        MONDAY("Понедельник"),
-        TUESDAY("Вторник"),
-        WEDNESDAY("Среда"),
-        THURSDAY("Четверг"),
-        FRIDAY("Пятница"),
-        SATURDAY("суббота"),
-        SUNDAY("воскресенье");
-
-        private String nameru;
-
-         Day(String name) {
-            this.nameru = name;
-        }
-
-        public boolean isWeekend() {
-             return this.getRusName().equals("суббота") | this.getRusName().equals("воскресенье") ? true : false ;
-       }
-
-        public String getRusName(){
-            return nameru;
-        }
-    }
-
-    public static class Cat {
-        public void sayHello() {
-            System.out.println("Мяу");
-        }
-    }
-
-    public static class Dog {
-        public void sayHello() {
-            System.out.println("Гав");
-        }
-
-        public void catchCat(Cat cat) {
-            System.out.println("Кошка поймана");
-            this.sayHello();
-            cat.sayHello();
-        }
+        
     }
 
 //    Для решения задачи нужно понимать методы StringBuilder
