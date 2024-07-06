@@ -1,5 +1,6 @@
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,8 +11,6 @@ import static java.lang.Math.sqrt;
 import static java.lang.String.valueOf;
 
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws ScannerException {
 //        test();
@@ -55,8 +54,55 @@ public class Main {
 //        System.out.println(printTextPerRole(roles,textLines));
 //        System.out.println(Day.MONDAY.getRusName());
 //        System.out.println(Day.SUNDAY.isWeekend());
-        Robot robot = new Robot(0,0, Direction.DOWN);
-        moveRobot(robot, 3, 5);
+
+        //Задание 2.3
+//        Robot robot = new Robot(0,0, Direction.DOWN);
+//        moveRobot(robot, 3, 5);
+        //Задание 2.1.9
+        ComplexNumber a = new ComplexNumber(504.0, 741.0);
+        ComplexNumber b = new ComplexNumber(741.0, 504.0);
+        System.out.println(a.equals(b));
+        System.out.println(a.hashCode() == b.hashCode());
+
+                    }
+    //Задание 2.1.9
+    public static class ComplexNumber {
+        private double re;
+        private double im;
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ComplexNumber that = (ComplexNumber) o;
+            return Double.compare(getRe(), that.getRe()) == 0 && Double.compare(getIm(), that.getIm()) == 0;
+        }
+
+        @Override
+        public int hashCode() {
+
+            int total = 31;
+            long lre = Double.doubleToLongBits(getRe()) + Double.doubleToRawLongBits(getRe());
+            long lim = Double.doubleToLongBits(getIm());
+            return  total + (int)(lre ^ (lre >>> 32)) + (int)(lim ^ (lim >>> 32));
+        }
+
+        public ComplexNumber() {
+        }
+
+        public ComplexNumber(double re, double im) {
+            this.re = re;
+            this.im = im;
+        }
+
+        public double getRe() {
+            return re;
+        }
+
+        public double getIm() {
+            return im;
+        }
+
     }
     //Задание 2.3
     public enum Direction {
@@ -106,9 +152,6 @@ public class Main {
     }
 
     public static void moveRobot(Robot robot, int toX, int toY) {
-//         if(robot.getDirection() != Direction.UP) {
-//            robot.dir = Direction.UP;
-//        }
          if(robot.getY() < toY){
              while (!robot.getDirection().equals(Direction.UP)) {
                  robot.turnLeft();
