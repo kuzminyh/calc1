@@ -1,6 +1,8 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,32 +10,31 @@ import java.util.regex.Pattern;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.sqrt;
-import static java.lang.String.valueOf;
 
 
 public class Main {
-    public static void main(String[] args) throws ScannerException {
+    public static void main(String[] args) throws ScannerException, IOException {
 //        test();
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.print("Введите выражение: ");
 //        String expression = scanner.nextLine();
 //        scanner.close();
 //        String result = calc(expression);
-       //System.out.println(0x0bp3);
-      //  calcCircleRadius(123);
+        //System.out.println(0x0bp3);
+        //  calcCircleRadius(123);
 //    return a + b == c;
 //    return Math.abs((a + b) - c) < 0.0001;
-      //  maxLongSqr();
-       //int result = charExpression(5) ;
-       // charExpression(5);
-       // factorialRecurs(5);
+        //  maxLongSqr();
+        //int result = charExpression(5) ;
+        // charExpression(5);
+        // factorialRecurs(5);
 //
 
         //printArray(new int[] {1,2,3,4,5,5,6,7,7});
         //getSubArrayBetween(new int[] {1,3,5,6,9,11,24}, 4, 10);
 //        getArrayMiddle(new int[] {});
 //        inverseArray(new int[]  {1, 4, 6, 7});
-       // mergeAndSort(new int[] {1, 3, 7, 5}, new int[] {8, 4, 2, 4});
+        // mergeAndSort(new int[] {1, 3, 7, 5}, new int[] {8, 4, 2, 4});
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {}, new int[] {})));
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {14}, new int[] {16})));
 //        System.out.println(Arrays.toString(mergeAndSort(new int[] {1, 5, 2, 17}, new int[] {4, 8, 6})));
@@ -58,13 +59,500 @@ public class Main {
         //Задание 2.3
 //        Robot robot = new Robot(0,0, Direction.DOWN);
 //        moveRobot(robot, 3, 5);
-        //Задание 2.1.9
-        ComplexNumber a = new ComplexNumber(504.0, 741.0);
-        ComplexNumber b = new ComplexNumber(741.0, 504.0);
-        System.out.println(a.equals(b));
-        System.out.println(a.hashCode() == b.hashCode());
+        //Задание 2.1.9 {
+//        ComplexNumber a = new ComplexNumber(504.0, 741.0);
+//        ComplexNumber b = new ComplexNumber(741.0, 504.0);
+//        System.out.println(a.equals(b));
+//        System.out.println(a.hashCode() == b.hashCode());
+//}
+//2.5.6+
+//        byte[] example = {72, 101, 108, 108, 111, 33};
+//        AsciiCharSequence sequence = new AsciiCharSequence(example);
+//        System.out.println(sequence.toString());
+//        System.out.println(sequence.length());
+//        System.out.println(sequence.charAt(4));
+//        System.out.println(sequence.subSequence(1, 4));
+//        example[0] = 74;
+//        System.out.println(sequence.toString());
 
-                    }
+//        Не забудьте прежде всего дописать в класс implements. Далее методы: length - всё предельно просто, charAt - массив надо привести к char, toString - конструктор и туда массив, subSequence самое сложное, но на самом деле всё просто возвращать надо AsciiCharSequence через copyOfRange.
+//        }
+
+        /*Для большего понимания при создании checkLabels:
+//TextAnalyzer[] analyzers - это массив из созданных {new SpamAnalyzer, new NegativeTextAnalyzer, new TooLongTextAnalyzer}.
+//Решение: цикл для всех + сравнения .processText(text) c Label.OK. */
+//    }
+//    public interface TextAnalyzer {
+//        Label processText(String text);
+//    }
+//    public enum Label {
+//        SPAM, NEGATIVE_TEXT, TOO_LONG, OK
+//    }
+//    public Label checkLabels(TextAnalyzer[] analyzers, String text) {
+////ну а дальше сами...
+//        и да, для запуска в IDE классам KeywordAnalyzer, SpamAnalyzer, NegativeTextAnalyzer, TooLongTextAnalyzer ставил модификатор static, без них IDE ругается, но Тесту это не нравится, поэтому, когда копипаст сюда, static уберите.
+//        и да, если к абстактному классу вы приклеяли интерфейс, то в наследниках этот же интерфейс приклеивать не нужно...
+
+      // инициализация анализаторов для проверки в порядке данного набора анализаторов
+
+    //2.5.7
+//        String[] spamKeywords = {"spam", "bad"};
+//        int commentMaxLength = 40;
+//        TextAnalyzer[] textAnalyzers1 = {
+//                new SpamAnalyzer(spamKeywords),
+//                new NegativeTextAnalyzer(),
+//                new TooLongTextAnalyzer(commentMaxLength)
+//        };
+//        TextAnalyzer[] textAnalyzers2 = {
+//                new SpamAnalyzer(spamKeywords),
+//                new TooLongTextAnalyzer(commentMaxLength),
+//                new NegativeTextAnalyzer()
+//        };
+//        TextAnalyzer[] textAnalyzers3 = {
+//                new TooLongTextAnalyzer(commentMaxLength),
+//                new SpamAnalyzer(spamKeywords),
+//                new NegativeTextAnalyzer()
+//        };
+//        TextAnalyzer[] textAnalyzers4 = {
+//                new TooLongTextAnalyzer(commentMaxLength),
+//                new NegativeTextAnalyzer(),
+//                new SpamAnalyzer(spamKeywords)
+//        };
+//        TextAnalyzer[] textAnalyzers5 = {
+//                new NegativeTextAnalyzer(),
+//                new SpamAnalyzer(spamKeywords),
+//                new TooLongTextAnalyzer(commentMaxLength)
+//        };
+//        TextAnalyzer[] textAnalyzers6 = {
+//                new NegativeTextAnalyzer(),
+//                new TooLongTextAnalyzer(commentMaxLength),
+//                new SpamAnalyzer(spamKeywords)
+//        };
+//        // тестовые комментарии
+//        String[] tests = new String[8];
+//        tests[0] = "This comment is so good.";                            // OK
+//        tests[1] = "This comment is so Loooooooooooooooooooooooooooong."; // TOO_LONG
+//        tests[2] = "Very negative comment !!!!=(!!!!;";                   // NEGATIVE_TEXT
+//        tests[3] = "Very BAAAAAAAAAAAAAAAAAAAAAAAAD comment with :|;";    // NEGATIVE_TEXT or TOO_LONG
+//        tests[4] = "This comment is so bad....";                          // SPAM
+//        tests[5] = "The comment is a spam, maybeeeeeeeeeeeeeeeeeeeeee!";  // SPAM or TOO_LONG
+//        tests[6] = "Negative bad :( spam.";                               // SPAM or NEGATIVE_TEXT
+//        tests[7] = "Very bad, very neg =(, very ..................";      // SPAM or NEGATIVE_TEXT or TOO_LONG
+//        TextAnalyzer[][] textAnalyzers = {textAnalyzers1, textAnalyzers2, textAnalyzers3,
+//                textAnalyzers4, textAnalyzers5, textAnalyzers6};
+//        Main testObject = new Main();
+//        int numberOfAnalyzer; // номер анализатора, указанный в идентификаторе textAnalyzers{№}
+//        int numberOfTest = 0; // номер теста, который соответствует индексу тестовых комментариев
+//        for (String test : tests) {
+//            numberOfAnalyzer = 1;
+//            System.out.print("test #" + numberOfTest + ": ");
+//            System.out.println(test);
+//            for (TextAnalyzer[] analyzers : textAnalyzers) {
+//                System.out.print(numberOfAnalyzer + ": ");
+//                System.out.println(testObject.checkLabels(analyzers, test));
+//                numberOfAnalyzer++;
+//            }
+//            numberOfTest++;
+//        }
+
+        //3.1.4
+
+//        Object i = Integer.valueOf(42);
+//        String s = (String)i;
+        //3.2.4
+//        public boolean getCreditForClient(BankWorker bankWorker, BankClient bankClient) {
+//            try {
+//                return bankWorker.checkClientForCredit(bankClient);
+//            } catch (BadCreditHistoryException e1) {
+//                System.out.println("Проблемы с банковской историей");
+//                return false;
+//            } catch (ProblemWithLawException e2) {
+//                return false;
+//            }
+//        }
+
+//                System.out.println(getCallerClassAndMethodName());
+//                m1();
+
+//3.2.5
+//try(Car car = new Car()) {
+//    car.drive();
+//} catch (RuntimeException ignore){
+//
+//}
+
+        //3.2.6
+//        алгоритм который ипользовал я м.б кому-то пригодится
+//        1) RobotConnection con = null;
+//        2) цикл for где i < 3
+//        2) for (int i = 0; i < 3; i++) {
+//            try {
+//                con.метод(соединения);
+//                con.метод(int, int);
+//                выход из цикла
+//            } catch (исключение о) {
+//                if (условие для проверки) {
+//                    throw new исключение("hello", o);
+//                }
+//            } finally {
+//                try {
+//                    con.метод(закрытия);
+//                } catch (Trowable e) {
+//
+//                }
+//            }
+//        }
+        //4.2.5
+//        byte[] original = {1, -2, -3, 4, 5};
+//        InputStream inputStream = new ByteArrayInputStream(original);
+////        int ans = 0;
+////         ans = sumOfStream(new Main().sumOfStream(inputStream));
+//        System.out.println(new Main().sumOfStream(inputStream));
+////        System.out.println(ans);
+    }
+    //4.2.5
+//    public  int sumOfStream(InputStream inputStream) throws IOException {
+//        byte b = (byte) inputStream.read();
+//       System.out.println(b);
+//        return b;
+//    };
+    //3.2.6
+    interface RobotConnectionManager {
+        RobotConnection getConnection();
+    }
+
+    interface RobotConnection extends AutoCloseable {
+        void moveRobotTo(int x, int y);
+        @Override
+        void close();
+    }
+    class Robot implements RobotConnection{
+        public void close(){
+            System.err.println("Close");
+        }
+        public void moveRobotTo(int x, int y){
+            System.err.println("move "+   x +  " ^ " +  y);
+        }
+    }
+
+    class RobotCon implements RobotConnectionManager {
+        static int k = 0;
+        public RobotConnection getConnection() { // бросает k эксепшенов тебе в метод k;
+           
+            System.err.println("k = " +  k);
+            if (k != 5) { // меняй как смотри что будет меняться, попробуй 3-ку и 2-ку
+                throw new RobotConnectionException(""  +  k);
+            } else {
+                return new Robot();
+            }
+        }
+    }
+
+    static class RobotConnectionException extends RuntimeException {
+        public RobotConnectionException(String message) {
+            super(message);
+        }
+
+        public RobotConnectionException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public class Test {
+        public static void main(String[] args) {
+//            moveRobot(new RobotCon(), 1, 2); // здесь цифры ничего не значат
+        }
+
+    public static void moveRobot(RobotConnectionManager robotConnectionManager, int toX, int toY) {
+            RobotConnection rcon = null;
+        for (int i = 0; i < 3; i++) {
+          try {
+              rcon = robotConnectionManager.getConnection();
+              rcon.moveRobotTo(toX, toY);
+//              if (rcon == null & i == 2 ) {
+//                  break;
+//              }
+
+          } catch (RobotConnectionException e) {
+              if(i == 2) {
+                  throw new RobotConnectionException("не соединилось");
+              }
+
+          } finally {
+              try {
+                  if (rcon != null) {
+                      rcon.close();
+                  }
+              }catch (Exception e){
+
+              }
+          }
+
+          }
+
+        }
+
+
+    }
+//3.2.5
+public static class Car implements AutoCloseable {
+    @Override
+    public void close() {
+        System.out.println("Машина закрывается...");
+    }
+    public void drive() {
+        System.out.println("Машина поехала.");
+    }
+}
+
+//    public boolean getCreditForClient(BankWorker bankWorker, BankClient bankClient)  {
+//        try {
+//          return checkClientForCredit(BankWorker bankWorker, BankClient bankClient)
+//        }catch (BadCreditHistoryException e1) {
+//            System.out.println("Проблемы с банковской историей");
+//            return  false;
+//        }catch (ProblemWithLawException e2) {
+//            return  false;
+//        }
+//    }
+    //3.1.6
+static void m1() {
+    System.out.println(getCallerClassAndMethodName());
+    m2();    }
+
+    static void m2() {
+        System.out.println(getCallerClassAndMethodName());
+        m3();    }
+
+    static void m3() {
+        System.out.println(getCallerClassAndMethodName());    }
+
+public static String getCallerClassAndMethodName() {
+    StackTraceElement[] stackTraceElements =  new Exception().getStackTrace();
+    String message = "";
+    if(stackTraceElements.length < 3){
+        return null;
+    }else{
+        StackTraceElement element = stackTraceElements[2];
+        String className = element.getClassName();
+        String methodName = element.getMethodName();
+        message = className + "#" + methodName;
+        return message;
+    }
+
+}
+    //3.1.4
+
+
+
+    //3.2.4
+
+
+    class MyNewException extends Exception {
+
+    }
+
+    public void testExp() throws MyNewException {
+          throw new MyNewException();
+    }
+        //2.5.7
+public static Label checkLabels(TextAnalyzer[] analyzers, String text) {
+         Label result = Label.OK;
+        for (TextAnalyzer analyzer : analyzers) {
+               result = analyzer.processText(text);
+          if (result != Label.OK) {
+                 return result;
+            }
+
+            }
+
+
+    return result;
+}
+
+enum Label {
+            SPAM, NEGATIVE_TEXT, TOO_LONG, OK
+        }
+abstract static class KeywordAnalyzer implements TextAnalyzer {
+      abstract protected String[] getKeywords() ;
+      abstract protected Label getLabel() ;
+
+      public Label processText(  String text){
+          String[] keyWords = getKeywords();
+          Label label = getLabel();
+        for (String keyword: keyWords) {
+            if(text.contains(keyword)){
+                return label;
+            }
+        }
+       return Label.OK;
+    };
+}
+
+public static class SpamAnalyzer extends KeywordAnalyzer {
+        private String[] keywords ;
+//        public Label label;
+        public SpamAnalyzer(String[] keywords){
+            this.keywords = keywords;
+//            System.out.println(this.keywords);
+//            this.label = processText(keywords);
+        }
+
+        protected String[] getKeywords() {
+            return keywords;
+        }
+        public Label getLabel() {
+           return Label.SPAM;
+        }
+
+
+    }
+
+    public static class NegativeTextAnalyzer  extends KeywordAnalyzer {
+        private  String[] keywords = {":(", "=(", ":|" } ;
+        protected String[] getKeywords() {
+            return  keywords;
+        }
+        public Label getLabel() {
+            return Label.NEGATIVE_TEXT;
+        }
+    }
+
+    public static class TooLongTextAnalyzer  implements TextAnalyzer {
+        private int maxLength;
+//        public Label label ;
+        public TooLongTextAnalyzer(int maxLength) {
+            this.maxLength = maxLength;
+//            this.label = processText(text);
+        }
+        public Label processText(String text) {
+            if(text.length() > maxLength){
+                return Label.TOO_LONG;
+            }
+            return Label.OK;
+        };
+
+    }
+    interface TextAnalyzer {
+        Label processText(String text);
+    }
+//2.5.6
+    public static class AsciiCharSequence implements CharSequence
+    {
+        public byte[] mass;
+
+        public AsciiCharSequence (byte[] mass) {
+            this.mass = mass;
+
+        }
+
+        @Override
+        public int length() {
+            return mass.length;
+        }
+
+        @Override
+        public char charAt(int index) {
+            char[] charArray = new String(mass).toCharArray();
+            return charArray[index];
+        }
+
+        @Override
+        public AsciiCharSequence subSequence(int start, int end) {
+            byte[] arr = Arrays.copyOfRange(mass, start, end);
+
+            AsciiCharSequence instance = new AsciiCharSequence(arr);
+
+//               String charArray = new String(mass);
+
+            return instance;
+
+        }
+
+        @Override
+        public String toString () {
+            char[] charArray  = new String(mass).toCharArray();
+
+            return new String(charArray);
+//
+        }
+   }
+    //Задание 2.4.9
+    public static class Student {
+        protected final String studying;
+        protected Student(String work) {
+            this.studying = work;
+        }
+        public Student() {
+            this.studying = "Прохожу тестовое задание.";
+        }
+        public void study() {
+            System.out.println("Я очень занят. " + studying);
+        }
+    }
+
+    public static class JavaStudent extends Student {
+             public  JavaStudent() {
+                    super();
+                }
+
+
+    }
+
+    //Задание 2.3.11
+    public class Human {
+        private final String secret; //секретики
+        private final String news; //новости
+        private final String experience; //опыт
+        private final String gossip; //сплетни
+
+        public Human(String secret, String news, String experience, String gossip) {
+            this.secret = secret;
+            this.news = news;
+            this.experience = experience;
+            this.gossip = gossip;
+        }
+
+       private String getSecret() {
+            return this.secret;
+       }
+        public String getNews() {
+            return this.news;
+        }
+        protected String getExperience() {
+            return this.experience;
+        }
+        protected String getGossip() {
+            return this.gossip;
+        }
+    }
+    //Задание 2.2.8
+    public static boolean isWeekend2(String dayName) {
+        return dayName.equals("Sunday") || dayName.equals("Saturday");
+    }
+
+    public static int weekendCount(String[] days) {
+        int i = 0;
+        for (String day : days) {
+            if (isWeekend2(day) ){
+                i++;
+            }
+        }
+        return i;
+    }
+
+
+    public static int weekdayCount(String[] days) {
+        int i = 0;
+        for (String day : days) {
+            if (!isWeekend2(day) ){
+                i++;
+            }
+        }
+        return i;
+    }
+
+
     //Задание 2.1.9
     public static class ComplexNumber {
         private double re;
@@ -105,95 +593,95 @@ public class Main {
 
     }
     //Задание 2.3
-    public enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-
-    public static class Robot {
-        int x;
-        int y;
-        Direction dir;
-
-        public Robot (int x, int y, Direction dir) {
-            this.x = x;
-            this.y = y;
-            this.dir = dir;
-        }
-
-        public Direction getDirection() {return dir;}
-
-        public int getX() {return x;}
-
-        public int getY() {return y;}
-
-        public void turnLeft() {
-            if      (dir == Direction.UP)    {dir = Direction.LEFT;}
-            else if (dir == Direction.DOWN)  {dir = Direction.RIGHT;}
-            else if (dir == Direction.LEFT)  {dir = Direction.DOWN;}
-            else if (dir == Direction.RIGHT) {dir = Direction.UP;}
-        }
-
-        public void turnRight() {
-            if      (dir == Direction.UP)    {dir = Direction.RIGHT;}
-            else if (dir == Direction.DOWN)  {dir = Direction.LEFT;}
-            else if (dir == Direction.LEFT)  {dir = Direction.UP;}
-            else if (dir == Direction.RIGHT) {dir = Direction.DOWN;}
-        }
-
-        public void stepForward() {
-            if (dir == Direction.UP)    {y++;}
-            if (dir == Direction.DOWN)  {y--;}
-            if (dir == Direction.LEFT)  {x--;}
-            if (dir == Direction.RIGHT) {x++;}
-        }
-    }
-
-    public static void moveRobot(Robot robot, int toX, int toY) {
-         if(robot.getY() < toY){
-             while (!robot.getDirection().equals(Direction.UP)) {
-                 robot.turnLeft();
-                 System.out.println("robot.turnLeft()");
-
-             }
-             while (robot.getY() < toY){
-                 System.out.println("robot.stepForward()");
-                 robot.stepForward();
-             }
-         }
-
-        if(robot.getY() > toY){
-            while (!robot.getDirection().equals(Direction.DOWN)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getY() > toY){
-                robot.stepForward();
-            }
-        }
-        if(robot.getX() < toX){
-            while (!robot.getDirection().equals(Direction.RIGHT)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getX() < toX){
-                robot.stepForward();
-                System.out.println("robot.stepForward()");
-            }
-        }
-        if(robot.getX() > toX){
-            while (!robot.getDirection().equals(Direction.LEFT)) {
-                robot.turnLeft();
-                System.out.println("robot.turnLeft()");
-            }
-            while (robot.getX() > toX){
-                robot.stepForward();
-                System.out.println("robot.stepForward()");
-            }
-        }
-   }
+//    public enum Direction {
+//        UP,
+//        DOWN,
+//        LEFT,
+//        RIGHT
+//    }
+//
+//    public static class Robot {
+//        int x;
+//        int y;
+//        Direction dir;
+//
+//        public Robot (int x, int y, Direction dir) {
+//            this.x = x;
+//            this.y = y;
+//            this.dir = dir;
+//        }
+//
+//        public Direction getDirection() {return dir;}
+//
+//        public int getX() {return x;}
+//
+//        public int getY() {return y;}
+//
+//        public void turnLeft() {
+//            if      (dir == Direction.UP)    {dir = Direction.LEFT;}
+//            else if (dir == Direction.DOWN)  {dir = Direction.RIGHT;}
+//            else if (dir == Direction.LEFT)  {dir = Direction.DOWN;}
+//            else if (dir == Direction.RIGHT) {dir = Direction.UP;}
+//        }
+//
+//        public void turnRight() {
+//            if      (dir == Direction.UP)    {dir = Direction.RIGHT;}
+//            else if (dir == Direction.DOWN)  {dir = Direction.LEFT;}
+//            else if (dir == Direction.LEFT)  {dir = Direction.UP;}
+//            else if (dir == Direction.RIGHT) {dir = Direction.DOWN;}
+//        }
+//
+//        public void stepForward() {
+//            if (dir == Direction.UP)    {y++;}
+//            if (dir == Direction.DOWN)  {y--;}
+//            if (dir == Direction.LEFT)  {x--;}
+//            if (dir == Direction.RIGHT) {x++;}
+//        }
+//    }
+//
+//    public static void moveRobot(Robot robot, int toX, int toY) {
+//         if(robot.getY() < toY){
+//             while (!robot.getDirection().equals(Direction.UP)) {
+//                 robot.turnLeft();
+//                 System.out.println("robot.turnLeft()");
+//
+//             }
+//             while (robot.getY() < toY){
+//                 System.out.println("robot.stepForward()");
+//                 robot.stepForward();
+//             }
+//         }
+//
+//        if(robot.getY() > toY){
+//            while (!robot.getDirection().equals(Direction.DOWN)) {
+//                robot.turnLeft();
+//                System.out.println("robot.turnLeft()");
+//            }
+//            while (robot.getY() > toY){
+//                robot.stepForward();
+//            }
+//        }
+//        if(robot.getX() < toX){
+//            while (!robot.getDirection().equals(Direction.RIGHT)) {
+//                robot.turnLeft();
+//                System.out.println("robot.turnLeft()");
+//            }
+//            while (robot.getX() < toX){
+//                robot.stepForward();
+//                System.out.println("robot.stepForward()");
+//            }
+//        }
+//        if(robot.getX() > toX){
+//            while (!robot.getDirection().equals(Direction.LEFT)) {
+//                robot.turnLeft();
+//                System.out.println("robot.turnLeft()");
+//            }
+//            while (robot.getX() > toX){
+//                robot.stepForward();
+//                System.out.println("robot.stepForward()");
+//            }
+//        }
+//   }
 
     //задание 2.3
     public enum Day {
